@@ -98,7 +98,7 @@ jobs:
 
       - name: Set artifact name
         run: |
-          ARTIFACT_NAME="Nadeko-nsu${NSU_VER}-$(date +%y%m%d)-$(date +%H%M)-${GITHUB_SHA:0:9}"
+          ARTIFACT_NAME="ridz_angelica.kerneloc.v2${NSU_VER}-$(date +%y%m%d)-$(date +%H%M)-${GITHUB_SHA:0:9}"
           echo "ARTIFACT_NAME=$ARTIFACT_NAME" >> $GITHUB_ENV
           echo "Artifact name: $ARTIFACT_NAME"
 
@@ -127,7 +127,7 @@ jobs:
 
           cat > anykernel.sh << 'EOF'
           properties() { '
-          kernel.string=Nadeko Kernel for blossom by dre698
+          kernel.string=ridzkernel overclock for REDMI 9c fork by @ridz_angelica1569
           do.devicecheck=1
           device.name1=blossom
           device.name2=dandelion
