@@ -16,6 +16,7 @@ env:
   BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   PRIVATE_CHAT_ID: ${{ secrets.TELEGRAM_PRIVATE_CHAT_ID }}
   GROUP_CHAT_ID: ${{ secrets.TELEGRAM_GROUP_CHAT_ID }}
+  GROUP_TOPIC_ID: ${{ secrets.TELEGRAM_GROUP_TOPIC_ID }}
 
 jobs:
   build_and_package:
@@ -183,18 +184,30 @@ jobs:
             B_MIN=$((${{ env.B_TIME }} / 60))
             B_SEC=$((${{ env.B_TIME }} % 60))
             CAPTION=$(printf "build succeeded in %sm, %ss\nmd5: \`%s\`\ncompiler: %s" "$B_MIN" "$B_SEC" "${{ env.Z_MD5 }}" "$COMPILER_VER")
-            for CHAT in "$PRIVATE_CHAT_ID" "$GROUP_CHAT_ID"; do
-              curl -s -F chat_id="$CHAT" \
-                -F document=@${{ env.ARTIFACT_NAME }}.zip \
-                -F caption="$CAPTION" \
-                -F parse_mode=Markdown \
-                "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
-            done
+
+            # kirim ke private chat (tanpa thread id)
+            curl -s -F chat_id="$PRIVATE_CHAT_ID" \
+              -F document=@${{ env.ARTIFACT_NAME }}.zip \
+              -F caption="$CAPTION" \
+              -F parse_mode=Markdown \
+              "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
+
+            # kirim ke grup, topic tertentu
+            curl -s -F chat_id="$GROUP_CHAT_ID" \
+              -F message_thread_id="$GROUP_TOPIC_ID" \
+              -F document=@${{ env.ARTIFACT_NAME }}.zip \
+              -F caption="$CAPTION" \
+              -F parse_mode=Markdown \
+              "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
           else
-            for CHAT in "$PRIVATE_CHAT_ID" "$GROUP_CHAT_ID"; do
-              curl -s -F chat_id="$CHAT" \
-                -F document=@build.log \
-                -F caption="build failed. check log." \
-                "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
-            done
+            curl -s -F chat_id="$PRIVATE_CHAT_ID" \
+              -F document=@build.log \
+              -F caption="build failed. check log." \
+              "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
+
+            curl -s -F chat_id="$GROUP_CHAT_ID" \
+              -F message_thread_id="$GROUP_TOPIC_ID" \
+              -F document=@build.log \
+              -F caption="build failed. check log." \
+              "https://api.telegram.org/bot${BOT_TOKEN}/sendDocument"
           fi
