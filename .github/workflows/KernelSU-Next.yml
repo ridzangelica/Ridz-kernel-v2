@@ -2,7 +2,7 @@
 # Defconfig: blossom_noksu_defconfig
 # This is an alternative build to main.yml/NadekoSU.yml, which use ReSukiSU/NadekoSU instead.
 
-name: Build Nadeko Kernel with KernelSU-Next
+name: Build Nadeko Andalan oc kernel Blossom with KernelSU-Next
 
 on:
   workflow_dispatch:
