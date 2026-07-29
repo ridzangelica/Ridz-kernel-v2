@@ -127,7 +127,7 @@ jobs:
 
           cat > anykernel.sh << 'EOF'
           properties() { '
-          kernel.string=ridzkernel overclock for REDMI 9c fork by @ridz_angelica1569
+          kernel.string=ridzkernel overclock v2 for REDMI 9c fork by @ridz_angelica1569
           do.devicecheck=1
           device.name1=blossom
           device.name2=dandelion
