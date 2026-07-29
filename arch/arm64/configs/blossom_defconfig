@@ -1,4 +1,4 @@
-CONFIG_LOCALVERSION="-Ridz_angelica oc kernel hliluo G35"
+CONFIG_LOCALVERSION="-Ridz_angelica oc kernel blossom ksun edition"
 CONFIG_DEBUG_KERNEL=y
 # CONFIG_LOCALVERSION_AUTO is not set
 CONFIG_PREEMPT=y
