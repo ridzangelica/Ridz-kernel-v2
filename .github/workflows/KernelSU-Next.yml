@@ -64,8 +64,10 @@ jobs:
       - name: Integrate KernelSU-Next
         run: |
           chmod u+x clean.sh
+          chmod u+x syscall_hook.sh
           bash clean.sh
           curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s legacy
+          bash syscall_hook.sh
 
       - name: Get KernelSU-Next version
         run: |
