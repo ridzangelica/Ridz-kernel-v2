@@ -1,4 +1,4 @@
-CONFIG_LOCALVERSION="-Nadeko"
+CONFIG_LOCALVERSION="-Andalan oc kernel for blossom ksun edition"
 CONFIG_DEBUG_KERNEL=y
 # CONFIG_LOCALVERSION_AUTO is not set
 CONFIG_PREEMPT=y
