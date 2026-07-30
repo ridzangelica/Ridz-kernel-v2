@@ -810,7 +810,7 @@
 
 #endif
 
-#define CFG_SUPPORT_AIS_5GHZ                    1
+#define CFG_SUPPORT_AIS_5GHZ                    0
 #define CFG_SUPPORT_DETECT_SECURITY_MODE_CHANGE 0
 
 /*------------------------------------------------------------------------------
