@@ -67,7 +67,7 @@ jobs:
       - name: Get NadekoSU version
         run: |
           NSU_GIT_VER=$(cd KernelSU && git rev-list --count HEAD 2>/dev/null || echo "0")
-          NSU_VER=$((30000 + NSU_GIT_VER))
+          NSU_VER=$((33300 + NSU_GIT_VER))
           echo "NSU_VER=$NSU_VER" >> $GITHUB_ENV
           echo "NadekoSU version: $NSU_VER"
 
