@@ -1053,10 +1053,8 @@ void wlanOnPostFirmwareReady(IN struct ADAPTER *prAdapter,
 #endif
 
 	/* Check hardware 5g band support */
-	if (prAdapter->fgIsHw5GBandDisabled)
-		prAdapter->fgEnable5GBand = FALSE;
-	else
-		prAdapter->fgEnable5GBand = TRUE;
+	/* [Ridz] 5GHz WiFi band forcibly disabled */
+	prAdapter->fgEnable5GBand = FALSE;
 
 #if CFG_SUPPORT_NVRAM
 	/* load manufacture data */
@@ -5110,15 +5108,8 @@ uint32_t wlanLoadManufactureData(IN struct ADAPTER
 	}
 
 	/* 3. Check if needs to support 5GHz */
-	if (prRegInfo->ucEnable5GBand) {
-		/* check if it is disabled by hardware */
-		if (prAdapter->fgIsHw5GBandDisabled
-		    || prRegInfo->ucSupport5GBand == 0)
-			prAdapter->fgEnable5GBand = FALSE;
-		else
-			prAdapter->fgEnable5GBand = TRUE;
-	} else
-		prAdapter->fgEnable5GBand = FALSE;
+	/* [Ridz] 5GHz WiFi band forcibly disabled */
+	prAdapter->fgEnable5GBand = FALSE;
 
 	/* 5. Get 16-bits Country Code and Bandwidth */
 	prAdapter->rWifiVar.u2CountryCode =
