@@ -20,6 +20,7 @@
 #endif
 
 #include "lcm_drv.h"
+#include "lcm_hbm.h"
 #include "lcm_define.h"
 #include "disp_dts_gpio.h"
 #ifdef BUILD_LK
@@ -522,7 +523,8 @@ static unsigned int lcm_ata_check(unsigned char *buffer)
 static void lcm_setbacklight_cmdq(void *handle, unsigned int level)
 {
 
-	level = level*72/100;
+	if (!lcm_hbm_enable)
+		level = level*72/100;
 #ifdef CONFIG_BACKLIGHT_SUPPORT_2047_FEATURE
 	level = level << 1;
 	bl_level[0].para_list[0] = level >> 4;
