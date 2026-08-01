@@ -25,7 +25,6 @@
 #include <linux/module.h>
 #include <linux/kobject.h>
 #include <linux/sysfs.h>
-#include <linux/kstrtox.h>
 
 int lcm_hbm_enable;
 EXPORT_SYMBOL(lcm_hbm_enable);
